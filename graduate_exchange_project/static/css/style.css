@@ -1,0 +1,151 @@
+/* static/css/style.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Более современный шрифт */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f0f8ff; /* Очень светло-голубой фон для всей страницы */
+    color: #333; /* Основной цвет текста */
+}
+
+header {
+    background-color: #4A90E2; /* Яркий голубой цвет для верхней полоски */
+    padding: 15px 30px; /* Немного увеличим отступы */
+    color: white; /* Цвет текста внутри хедера - белый */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Небольшая тень для объема */
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Ограничим ширину для больших экранов */
+    margin: 0 auto; /* Центрируем навигацию */
+}
+
+.logo a {
+    font-size: 2em; /* Крупная надпись "Биржа Выпускников" */
+    font-weight: bold;
+    text-decoration: none;
+    color: white; /* Белый цвет для логотипа */
+}
+
+.auth-links {
+    display: flex; /* Для выравнивания элементов в строку */
+    align-items: center; /* Вертикальное выравнивание по центру */
+}
+
+.auth-links span { /* Стили для "Привет, username!" */
+    margin-right: 15px;
+    font-size: 0.9em;
+}
+
+.auth-links a {
+    margin-left: 10px; /* Небольшой отступ между ссылками */
+    text-decoration: none;
+    color: white; /* Белый цвет для ссылок "Войти", "Зарегистрироваться" */
+    padding: 8px 15px; /* Делаем ссылки похожими на кнопки */
+    border: 1px solid white; /* Белая рамка */
+    border-radius: 5px; /* Скругленные углы */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Плавный переход для ховера */
+}
+
+.auth-links a:hover {
+    background-color: white; /* При наведении фон становится белым */
+    color: #4A90E2; /* Текст становится голубым */
+    text-decoration: none; /* Убираем подчеркивание при ховере */
+}
+
+main {
+    flex-grow: 1;
+    padding: 30px;
+    max-width: 1200px; /* Ограничим ширину для больших экранов */
+    width: 100%;
+    margin: 20px auto; /* Отступы сверху/снизу и центрирование */
+    background-color: #ffffff; /* Белый фон для основного контента */
+    box-shadow: 0 0 15px rgba(0,0,0,0.05); /* Мягкая тень для блока контента */
+    border-radius: 8px; /* Скругленные углы для блока контента */
+    box-sizing: border-box; /* Чтобы padding не увеличивал общую ширину */
+}
+
+/* Стили для заголовков внутри main, если ты хочешь, чтобы они были крупными и по центру */
+main h1 {
+    color: #2c5d8f; /* Темно-голубой цвет для заголовков */
+    text-align: center;
+    font-size: 2.5em; /* Крупный размер */
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+main h2 {
+    color: #367ab3; /* Голубой для подзаголовков */
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+footer {
+    background-color: #3E7CB1; /* Более темный голубой для футера */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto; /* Прижимает футер к низу, если контента мало */
+}
+
+/* Общие стили для ссылок в контенте, если нужно */
+main a {
+    color: #4A90E2;
+    text-decoration: none;
+}
+
+main a:hover {
+    text-decoration: underline;
+}
+
+/* Стили для кнопок, если они будут в контенте */
+.button, input[type="submit"], button {
+    background-color: #4A90E2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover, input[type="submit"]:hover, button:hover {
+    background-color: #3E7CB1;
+}
+
+/* Если у вас есть сообщения Django (messages framework) */
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+.messages li {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+.messages li.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.messages li.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+.messages li.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+.messages li.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}

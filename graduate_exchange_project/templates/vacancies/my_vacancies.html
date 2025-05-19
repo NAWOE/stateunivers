@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Мои вакансии{% endblock %}
+{% block content %}
+<h2>Мои вакансии</h2>
+<p><a href="{% url 'vacancy_create' %}">Создать новую вакансию</a></p>
+{% if vacancies %}
+    <ul>
+        {% for vacancy in vacancies %}
+        <li>
+            <h3><a href="{% url 'vacancy_detail' vacancy.pk %}">{{ vacancy.title }}</a></h3>
+            <p><small>Опубликовано: {{ vacancy.created_at|date:"d.m.Y H:i" }}</small></p>
+            <a href="{% url 'vacancy_update' vacancy.pk %}">Редактировать</a> |
+            <a href="{% url 'vacancy_delete' vacancy.pk %}">Удалить</a>
+            <hr>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>У вас пока нет созданных вакансий.</p>
+{% endif %}
+{% endblock %}

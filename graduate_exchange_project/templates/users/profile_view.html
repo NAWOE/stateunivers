@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Мой профиль{% endblock %}
+
+{% block content %}
+<h2>Профиль: {{ user.userprofile.full_name }} ({{ user.userprofile.get_role_display }})</h2>
+
+<h3>Общая информация:</h3>
+<p><strong>Email (Логин):</strong> {{ user.email }}</p>
+<p><strong>ФИО:</strong> {{ profile.full_name }}</p>
+<p><strong>Пол:</strong> {{ profile.get_gender_display }}</p>
+<p><strong>Дата рождения:</strong> {{ profile.date_of_birth|date:"d.m.Y" }}</p>
+<p><strong>Телефон:</strong> {{ profile.phone_number }}</p>
+
+<hr>
+
+<h3>Информация для поиска работы:</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить изменения</button>
+</form>
+
+<hr>
+<p><a href="{% url 'home' %}">На главную</a></p>
+{% endblock %}

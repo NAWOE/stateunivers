@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}{{ vacancy.title }}{% endblock %}
+{% block content %}
+<h2>{{ vacancy.title }}</h2>
+<p><strong>Компания:</strong> {{ vacancy.display_company_name }}</p>
+{% if vacancy.salary_from and vacancy.salary_to %}
+    <p><strong>Зарплата:</strong> {{ vacancy.salary_from|floatformat:"0" }} - {{ vacancy.salary_to|floatformat:"0" }} руб.</p>
+{% elif vacancy.salary_from %}
+    <p><strong>Зарплата:</strong> от {{ vacancy.salary_from|floatformat:"0" }} руб.</p>
+{% endif %}
+
+<h3>Описание:</h3>
+<p>{{ vacancy.description|linebreaksbr }}</p>
+
+<h3>Требования:</h3>
+<p>{{ vacancy.requirements|linebreaksbr }}</p>
+
+<p><small>Опубликовано: {{ vacancy.created_at|date:"d.m.Y H:i" }}</small></p>
+
+{% if user.is_authenticated and user.userprofile.role == 'employer' and vacancy.employer_profile == user.userprofile %}
+    <a href="{% url 'vacancy_update' vacancy.pk %}">Редактировать</a> |
+    <a href="{% url 'vacancy_delete' vacancy.pk %}">Удалить</a>
+{% endif %}
+<p><a href="{% url 'vacancy_list' %}">К списку вакансий</a></p>
+{% endblock %}

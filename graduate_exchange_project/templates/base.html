@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Биржа Выпускников{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="{% url 'home' %}">Биржа Выпускников</a>
+            </div>
+            <div class="auth-links">
+                   {% if user.is_authenticated %}
+                       <span>Привет, {{ user.username }}!</span>
+                       {% if user.userprofile.role == 'student' %} {# Убираем hasattr #}
+                            <a href="{% url 'profile_view' %}">Мой профиль</a>
+                       {% elif user.userprofile.role == 'employer' %} {# Убираем hasattr #}
+                            <a href="{% url 'my_vacancies' %}">Мои вакансии</a>
+                       {% endif %}
+                       <a href="{% url 'logout' %}">Выйти</a>
+                   {% else %}
+                       <a href="{% url 'login' %}">Войти</a>
+                       <a href="{% url 'register' %}">Зарегистрироваться</a>
+                   {% endif %}
+               </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Содержимое конкретной страницы будет здесь -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>© {% now "Y" %} Биржа Выпускников. Все права защищены.</p>
+    </footer>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

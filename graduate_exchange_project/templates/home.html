@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная - Биржа Выпускников{% endblock %}
+
+{% block content %}
+<div class="home-page-welcome">
+    <h1>Добро пожаловать на Биржу Выпускников!</h1>
+    <p class="tagline">Здесь вы можете найти работу или талантливых сотрудников.</p>
+</div>
+
+{% if user.is_authenticated and user.userprofile.role == 'student' %}
+    <div class="vacancies-section">
+        <h2>Последние вакансии:</h2>
+        {% if vacancies %}
+            <ul class="vacancies-list">
+                {% for vacancy in vacancies %}
+                    <li class="vacancy-item">
+                        <a href="{% url 'vacancy_detail' vacancy.id %}">{{ vacancy.title }}</a>
+                        <span class="company-name">Компания: {{ vacancy.display_company_name }}</span>
+                        {# Можно добавить еще деталей, например, город или краткое описание, если есть в модели vacancy #}
+                        {# <p class="vacancy-location">Город: {{ vacancy.location|default:"Не указан" }}</p> #}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-vacancies-message">Пока нет доступных вакансий.</p>
+        {% endif %}
+    </div>
+{% elif not user.is_authenticated %}
+    <div class="auth-prompt">
+        <p>Пожалуйста, воспользуйтесь нашими возможностями!</p>
+        <div class="auth-prompt-buttons">
+            <a href="{% url 'login' %}" class="button">Войти</a>
+            <a href="{% url 'register' %}" class="button">Зарегистрироваться</a>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}

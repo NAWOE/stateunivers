@@ -1,0 +1,6 @@
+1. Закидываете проект в Pycharm
+2. Дальше открываете Terminal 
+3. Нужно активировать виртуальное окружение "venv_graduate_exchange\Scripts\activate"
+4. Дальше нужно перейти в папку "cd .\graduate_exchange_project\"
+5. Запускайте сервер командой python manage.py runserver
+6. У вас откроется локалка, делаете что хотите и как хотите

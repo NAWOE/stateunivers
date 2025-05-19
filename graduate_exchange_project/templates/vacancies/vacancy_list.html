@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Список вакансий{% endblock %}
+{% block content %}
+<h2>Актуальные вакансии</h2>
+{% if vacancies %}
+    <ul>
+        {% for vacancy in vacancies %}
+        <li>
+            <h3><a href="{% url 'vacancy_detail' vacancy.pk %}">{{ vacancy.title }}</a></h3>
+            <p>Компания: {{ vacancy.display_company_name }}</p>
+            {% if vacancy.salary_from and vacancy.salary_to %}
+                <p>Зарплата: {{ vacancy.salary_from|floatformat:"0" }} - {{ vacancy.salary_to|floatformat:"0" }} руб.</p>
+            {% elif vacancy.salary_from %}
+                <p>Зарплата: от {{ vacancy.salary_from|floatformat:"0" }} руб.</p>
+            {% endif %}
+            <p><small>Опубликовано: {{ vacancy.created_at|date:"d.m.Y H:i" }}</small></p>
+            <hr>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>На данный момент нет активных вакансий.</p>
+{% endif %}
+{% endblock %}
